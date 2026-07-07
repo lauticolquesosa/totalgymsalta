@@ -176,20 +176,6 @@ h1, h2, h3 {
 
 .nav > a:hover { color: var(--c-accent); }
 
-.nav__wa {
-  width: 44px;
-  height: 44px;
-  background: var(--c-whatsapp);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  transition: transform 0.2s ease;
-}
-
-.nav__wa:hover { transform: scale(1.07); }
-
 .hamburger {
   display: none;
   background: none;
