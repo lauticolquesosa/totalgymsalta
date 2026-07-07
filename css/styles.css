@@ -29,6 +29,9 @@
 
 html { scroll-behavior: smooth; }
 
+/* Compensa el header fijo (nav + banner de promo) al navegar por anclas */
+section[id] { scroll-margin-top: 96px; }
+
 body {
   margin: 0;
   background: var(--c-bg);
@@ -68,7 +71,6 @@ h1, h2, h3 {
 }
 
 .section__head { margin-bottom: 48px; }
-.section__head--center { text-align: center; }
 
 .section__head h2 {
   font-size: clamp(34px, 5vw, 56px);
@@ -305,6 +307,7 @@ h1, h2, h3 {
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh; /* altura real del viewport en mobile (barra del navegador) */
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -443,7 +446,7 @@ h1, h2, h3 {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
   gap: 24px;
 }
 
@@ -505,7 +508,10 @@ h1, h2, h3 {
   padding-bottom: 6px;
   margin-bottom: 26px;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
+
+.tabs::-webkit-scrollbar { display: none; }
 
 .tab {
   flex: 0 0 auto;
@@ -687,7 +693,7 @@ h1, h2, h3 {
 
 .estetica {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: 20px;
 }
 
@@ -715,7 +721,7 @@ h1, h2, h3 {
 
 .plans {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: 20px;
 }
 
@@ -786,7 +792,7 @@ h1, h2, h3 {
 
 .testimonials {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 22px;
   margin-bottom: 48px;
 }
@@ -851,7 +857,7 @@ h1, h2, h3 {
 
 .locations {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: 22px;
 }
 
@@ -1037,6 +1043,63 @@ h1, h2, h3 {
   .nav { display: none; }
   .hamburger { display: flex; }
   .hide-mob { display: none !important; }
+}
+
+@media (max-width: 600px) {
+  section[id] { scroll-margin-top: 120px; }
+
+  /* Header y promo más compactos */
+  .header__inner { padding: 10px 16px; }
+  .header__logo img { height: 34px; }
+
+  .promo {
+    padding: 7px 14px;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .promo__text { font-size: 12.5px; }
+
+  .container,
+  .container-wide,
+  .container-narrow { padding-inline: 18px; }
+
+  /* CTAs de ancho completo: más fáciles de tocar */
+  .hero__ctas .btn { flex: 1 1 100%; }
+
+  .hero__content {
+    padding-top: 130px;
+    padding-bottom: 72px;
+  }
+
+  .sede,
+  .sede__body { min-height: 380px; }
+
+  .sede__body { padding: 26px; }
+
+  .estetica__card { padding: 28px 24px; }
+  .plan { padding: 28px 24px; }
+
+  .estetica__card .btn,
+  .schedule .btn,
+  .panel .btn { width: 100%; }
+
+  .panel__head { align-items: flex-start; }
+
+  .pilates { gap: 36px; }
+
+  .location iframe { height: 190px; }
+
+  .feed { grid-template-columns: repeat(2, 1fr); }
+
+  .footer__cols { gap: 28px; }
+
+  .wa-float {
+    width: 54px;
+    height: 54px;
+    bottom: 16px;
+    right: 16px;
+  }
 }
 
 /* ---------- Reduced motion ---------- */

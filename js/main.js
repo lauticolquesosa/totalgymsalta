@@ -62,6 +62,33 @@
 
   var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* --------------------------- Navegación limpia -------------------------
+     Scroll suave a las secciones sin dejar el #hash en la URL.
+     ------------------------------------------------------------------------ */
+
+  function initCleanAnchors() {
+    function cleanUrl() {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        var target = document.getElementById(link.getAttribute("href").slice(1));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+        cleanUrl();
+      });
+    });
+
+    // Si alguien entra con un #hash viejo, scrollea y limpia la URL.
+    if (window.location.hash) {
+      var initial = document.getElementById(window.location.hash.slice(1));
+      if (initial) initial.scrollIntoView();
+      cleanUrl();
+    }
+  }
+
   /* ----------------------------- Header sticky --------------------------- */
 
   function initHeader() {
@@ -231,6 +258,7 @@
 
   /* -------------------------------- Init --------------------------------- */
 
+  initCleanAnchors();
   initHeader();
   initMobileMenu();
   initSchedule();
