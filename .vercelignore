@@ -1,0 +1,6 @@
+# Nunca deployar el material de diseño ni archivos locales
+TotalGym.zip
+solicitud-de-desarrollo-web/
+README.md
+.env*
+node_modules/
