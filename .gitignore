@@ -1,0 +1,14 @@
+# Design handoff bundle (referencia, no producción)
+TotalGym.zip
+solicitud-de-desarrollo-web/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dependencias / builds
+node_modules/
+
+# Vercel
+.vercel/
